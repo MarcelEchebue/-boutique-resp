@@ -10,14 +10,49 @@
 
 <body>
 
-    <!-- En-tête -->
+    <!-- En-tête 
+        HEADER (En-tête du site) avec barre de navigation responsive
+
+        - class="bg-white shadow-sm sticky-top" :
+        - bg-white : fond blanc.
+        - shadow-sm : petite ombre portée pour donner un effet d'élévation.
+        - sticky-top : rend l’en-tête « collant » en haut de la page lors du défilement.
+    -->
     <header class="bg-white shadow-sm sticky-top">
+        <!-- 
+            NAVBAR Bootstrap (barre de navigation)
+            - navbar : classe de base pour toutes les barres de navigation Bootstrap.
+            - navbar-expand-lg : barre étendue horizontalement à partir des grands écrans.
+            - navbar-light : couleur de texte adaptée aux fonds clairs.
+            - container : limite la largeur de la barre et la centre.
+            -->
         <nav class="navbar navbar-expand-lg navbar-light container">
+            <!-- 
+                LOGO ou nom de la marque
+                - navbar-brand : style Bootstrap pour la marque ou le logo.
+                - fw-bold : texte en gras.
+                - href="#home" : lien vers la section d’accueil.
+                -->
         <a class="navbar-brand fw-bold" href="#home">A.T Shop</a>
+            <!-- 
+            BOUTON HAMBURGER (visible sur les petits écrans)
+            - navbar-toggler : bouton qui affiche/masque le menu.
+            - data-bs-toggle="collapse" : active l’effet de repli (Bootstrap 5).
+            - data-bs-target="#navbarNav" : identifie le menu à ouvrir/fermer.
+            -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
+            <!-- 
+                MENU DE NAVIGATION (repliable)
+                - collapse navbar-collapse : permet d’afficher/masquer ce bloc sur petit écran.
+                - id="navbarNav" : identifiant ciblé par le bouton hamburger.
+            -->
         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- 
+            LISTE DE LIENS DE NAVIGATION
+            - ms-auto : pousse les éléments vers la droite (margin start auto).
+            -->
             <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="#produits">Produits</a></li>
@@ -29,10 +64,37 @@
 
 
 
-    <!-- Section Accueil -->
+    <!-- Section Accueil 
+        SECTION "Accueil" (Home) - Pleine hauteur (100% de la hauteur de la fenêtre)
+
+        - id="home" : permet d’identifier cette section pour la navigation ou les ancres.
+        - class="vh-100 bg-dark bg-cover bg-center position-relative d-flex align-items-center justify-content-center text-center" :
+        - vh-100 : hauteur de la section = 100% de la hauteur de l'écran.
+        - bg-dark : couleur de fond sombre (en secours si l'image ne charge pas).
+        - bg-cover / bg-center : l’image couvre tout l’espace et reste centrée.
+        - position-relative : permet de positionner des éléments enfants en "absolute".
+        - d-flex / align-items-center / justify-content-center / text-center : 
+            → centre le contenu horizontalement et verticalement grâce à Flexbox.
+        
+        - style="background-image: url('images/performance.jpg'); ..." :
+        → applique une image de fond personnalisée à la section.
+    -->
     <section id="home" class="vh-100 bg-dark bg-cover bg-center position-relative d-flex align-items-center justify-content-center text-center"
         style="background-image: url('images/performance.jpg'); background-size: cover; background-position: center;">
+
+            <!-- 
+            Overlay sombre (semi-transparent) pour améliorer la lisibilité du texte sur l'image.
+            - position-absolute + top-0 + start-0 : positionne ce calque en haut à gauche.
+            - w-100 / h-100 : prend toute la largeur et la hauteur de la section.
+            - bg-black bg-opacity-50 : fond noir à 50 % de transparence.
+            -->
             <div class="position-absolute top-0 start-0 w-100 h-100 bg-black bg-opacity-50"></div>
+            <!-- 
+                Contenu principal centré
+                - container : largeur fluide avec marges automatiques.
+                - position-relative : pour s'assurer que le contenu est au-dessus du calque sombre.
+                - text-white : texte en blanc.
+                -->
 
         <div class="container position-relative text-white">
             <div class="mx-auto" style="max-width: 720px;">
@@ -47,7 +109,24 @@
         </div>
     </section>
 
-    <!-- Section Produit -->
+    <!-- 
+        SECTION PRODUITS
+        Cette section présente les produits de la boutique sous forme de cartes responsives à l’aide du système de grille de Bootstrap.
+
+        - La section est identifiée par l’id "produits", ce qui permet d’y accéder via un lien d’ancrage (ex. dans le menu).
+        - Un conteneur Bootstrap (`.container`) centre le contenu avec des marges latérales automatiques.
+        - Le titre est centré et espacé du reste grâce aux classes `text-center` et `mb-5`.
+
+        Produits :
+        - Chaque produit est placé dans une colonne responsive (`col-md-6 col-lg-3`), affichant 4 cartes par ligne sur grand écran, 2 par ligne sur tablette, et 1 par ligne sur mobile.
+        - Chaque carte (`.card`) utilise un conteneur à ratio 1:1 (`ratio-1x1`) pour conserver une image carrée, peu importe la taille de l’écran.
+        - Les images sont entièrement visibles dans leur cadre sans être déformées grâce à `object-fit: cover`.
+        - Le contenu de chaque carte (titre, description, bouton) est structuré verticalement avec Flexbox (`d-flex flex-column`) pour que le bouton "Buy now" reste toujours aligné en bas (`mt-auto`).
+        - Le bouton est mis en valeur avec Bootstrap (`btn btn-primary`) et prend toute la largeur (`w-100`).
+
+        Cette structure garantit une mise en page moderne, responsive et esthétique adaptée à tous les écrans.
+        -->
+
     <section id="produits" class="py-5">
         <div class="container">
         <h2 class="text-center mb-5">Ours Produts</h2>
@@ -111,7 +190,42 @@
         </div>
     </section>
 
-    <!-- Section Contact -->
+    <!-- 
+        SECTION CONTACT
+
+        Cette section permet aux utilisateurs de contacter la boutique via un formulaire simple et clair.
+
+        - id="contact" : identifie la section pour permettre le lien d’ancrage depuis le menu.
+        - class="py-5 bg-light px-3" :
+        - py-5 : espacement vertical haut/bas pour aérer la section.
+        - bg-light : fond gris clair pour contraster avec les autres sections.
+        - px-3 : padding horizontal sur petits écrans.
+
+        Contenu :
+        - Un conteneur Bootstrap centralise le contenu avec `container`.
+        - Le titre principal est centré avec `text-center`, suivi d’un sous-texte explicatif en `text-muted`.
+
+        Formulaire :
+        - Formulaire stylisé :
+        - `mx-auto` : centré horizontalement.
+        - `bg-white p-4 p-md-5` : fond blanc avec padding adapté aux petits et moyens écrans.
+        - `rounded shadow` : bords arrondis et ombre pour un look moderne.
+        - `max-width: 700px` : limite la largeur pour une meilleure lisibilité.
+
+        Champs :
+        - Trois champs sont inclus :
+        - Nom (input type="text")
+        - Email (input type="email")
+        - Message (textarea)
+        Tous sont requis (`required`) pour éviter les envois incomplets.
+
+        Bouton :
+        - Centré grâce à `text-center`.
+        - Stylisé en vert (`btn btn-success`) avec des paddings personnalisés (`px-5 py-2`) pour un rendu plus visible et cliquable.
+
+        Cette section garantit une interface de contact fonctionnelle, responsive et agréable à l'œil, idéale pour les visiteurs souhaitant poser des questions ou laisser un message.
+        -->
+
     <section id="contact" class="py-5 bg-light px-3">
     <div class="container">
         <div class="text-center mb-5">
